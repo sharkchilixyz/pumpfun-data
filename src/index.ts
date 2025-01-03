@@ -1,8 +1,10 @@
 import express from 'express';
 import webhookRoutes from './routes/route';
+import './utils/env'
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = parseInt(process.env.PORT ?? '3000');
+console.log(PORT)
 
 app.use(express.json());
 
@@ -12,7 +14,7 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
   console.error(err.stack);
   res.status(500).json({
     success: false,
-    error: 'Something broke!'
+    error: 'Something wrong!'
   });
 });
 
